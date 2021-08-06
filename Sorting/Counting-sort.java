@@ -1,6 +1,7 @@
 /*
  * Counting sort for non-negative numbers
- *
+ * Not a comparison sort
+ * This is a stable sort implementation
  * Worst Time complexity :O(n+k)
  * Average Time complexity :O(n+k)
  * Best Time complexity :O(n+k)
