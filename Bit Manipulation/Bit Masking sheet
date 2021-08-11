@@ -1,0 +1,39 @@
+Find ith bit
+i=4
+N    = 1 1 0 1 0 1 0 0
+Mask = 0 0 0 1 0 0 0 0 = 1 << i
+N && Mask = res
+if(res == 00000000) the ith bit is 0
+else
+it is 1
+
+Set ith bit
+N    = 1 1 0 0 0 1 0 0
+Mask = 0 0 0 1 0 0 0 0 = 1 << i
+res = N || Mask = 1 1 0 1 0 1 0 0 
+
+Clear ith bit 
+N    = 1 1 0 1 0 1 0 0
+Mask = 1 1 1 0 1 1 1 1  = ~(1 << i) 
+res = N & Mask = 1 1 0 0 0 1 0 0 
+
+Number of digits in binary number from decimal : floor(log n base 2) + 1 eg : 13 : log 13 + 1 = 3 + 1 = 4 digits
+Number of digits in decimal from binary number : floor(log n base 10) + 1
+
+Find the number of 1s in the decimal number 13 = 1101
+Number of bin = floor(log n base 2) + 1 = 4
+loop 4 times : check if last digit is 1 by && 1, then right shift till 1 till number != 0
+ 
+ 
+ 
+Trick : n & (n-1) to change least significant set bit to 0 ---> 1111-> 1110---> 1100----> 1000----> 0000
+                                                                1101 -> 1100--> 1000-->0000
+                                                                
+                                                                So for this, frequency = number of 1s
+                                                                
+13 n   : 1101
+12 n-1 : 1100
+13 & 12 = 1100 = n & n-1 = 12
+12 & 11 = 1100 & 1011 = 1000 = 8
+8 & 7 = 1000 & 0111 = 0000
+
