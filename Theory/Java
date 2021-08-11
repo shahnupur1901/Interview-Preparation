@@ -1,0 +1,104 @@
+Java
+
+platform independent because of Java Virtual Machine 
+interpreter and compiler
+
+Text editor to source code in .java 
+to compiler(diff) to bytecode .class
+to JVM for interpretation to execution
+
+JVM different and specially tailored
+
+Integer : byte short int long 
+Float : double float
+Char
+boolean
+
+an array is an object of Array class
+String is an object too
+
+Class : basically a data type, template of an object, not a physical entity. It describes the set of data structures and methods of a class, and later the object of it can be instantiated
+
+Object declaration and allocation
+Person p; // p can refer to an object of class Person
+p = new Person(); // p now refers to an actual object which has been instantiated with the new keyword
+
+NEW : DYNAMICALLY ALLOCATES MEMORY FOR AN OBJECT AND RETURNS A REFERENCE FOR IT 
+
+access specifier return type name (args){
+}
+Constructor : Default, can be manually created too
+
+THIS : refer to the current object, or the onject which invoked that method
+
+Automatic garbage collection
+When an object doesn't have any reference
+
+Method overloading : same name different parameters
+
+Object reference : directly to that memory location
+primitive are passed by values
+objects by reference
+
+static : 
+static methods/class methods ----> invoked by class name not object
+main is static, called without an oject
+static variable :  1 memory space for all objects
+
+COnstructor calling :
+In the subclass constructor, firstly, and automatically, the superclass of this class is ALWAYS invoked. If you want a parameterized, write super first.
+so wile creating sub class obj, super class obj is constructed implicited, super present or not!
+super.method();
+super.member
+
+Polymorphism in Java
+- Method overloading
+- Method overriding
+
+Method overloading 
+functions with same name, diff parameters
+static
+
+Method overriding
+A method in subclass has a method with same name, same parameters as in superclass, then method in subclass is said to override method in superclass.
+dynamic
+
+Dynamic method dispatch/Runtime polymorphism
+Method overriding supports DMD
+Call to an overriden method is resolved dynamically at run time
+
+
+
+Abstraction : hide implemantation, show funfunctionality that is the method and values, not how they work. By interfaces and abstract class
+
+Abstract class :
+abstract class{
+}
+needs to be extended
+cannot be instantiated!
+Constructors/static methods cannot be abstract
+
+Abstract Class                                  Interface
+can have constructors and static stuff
+Abstract and non-abstract methods                         Only abstract methods
+No hybrid inheritence                                     possible, 2 or more interfaces can be implemented by a class
+final, static, non static, non final                      only static and final variables
+variables
+
+abstract                                                  interface
+extends                                                   implements
+class members : public, private,protected                 class members must be public!
+
+
+
+class implementing interface mustttttt declare the method as public
+interface varibales cannot be updated, are final and static
+interfaces and abstract classes can be extended
+
+
+
+
+
+
+
+
