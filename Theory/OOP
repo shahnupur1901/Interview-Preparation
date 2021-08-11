@@ -1,0 +1,30 @@
+Object Oriented Programming :
+Merits over functional: helps to hide data variables from classes which are directly communicating with en user. Good for security
+                        Inheritence
+                        Polymorphism
+                        Advantages : modularity and reuseability
+
+Objects : encapsulation of method + class variables + instance variables
+
+class : blueprint of an object
+
+Abstract data type : It is a type/class of an object whose behaviour is defined with a set of methods and a set of data structures. 
+The implementation of the methods is hidden or abstracted from the end user
+Eg: List ADT, Stack ADT
+
+Encapsulation : packaging data structures and methods into a single entity
+
+Polymorphism : many forms, ability of object to take on many forms
+Types:
+1. Pure : Single function, multiple interpretations
+2. Ad hoc: overloading - different functions with same name different arguments
+
+Inheritence : reuseability of functions from a more generalized class
+Types:
+1. Single
+2. Multi-level
+3. Hierarchal
+4. Hybrid (not in Java)
+
+
+
