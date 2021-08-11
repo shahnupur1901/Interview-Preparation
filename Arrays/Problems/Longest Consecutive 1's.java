@@ -1,3 +1,6 @@
+/*
+Window with start and max
+*/
 class Solution{
     
     /*  Function to calculate the longest consecutive ones
