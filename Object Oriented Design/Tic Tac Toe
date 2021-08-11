@@ -1,0 +1,13 @@
+1. Board 
+variables : int[3][3] int 0,1,2
+            Winner
+methods   : intitialize()
+            getWinner
+            getBoard
+            getCurrentPlayer- 0,1 flag
+            makeMove(Move m)
+            
+2. User : Userid, stats
+3. Move : player, int i, int j
+          ifWin 0 no win 1 player 1 wins, 2 player 2
+4. Game : gameid, int userid1, userid2, listofmoves
