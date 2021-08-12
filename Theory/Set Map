@@ -1,0 +1,27 @@
+HashSet : No ordering
+TreeSet : Natural ordering
+LinkedHashSet : Insertion ordering
+
+HashSet : HashMap - O(1)
+TreeSet : TreeMap - O(logn)
+LinkedHashSet : HashMap and LinkedList - O(1)
+
+add is boolean. true if no duplicate
+
+hashmap :
+1. map.put(key,value)
+char, index
+num,index
+2. map.getOrDefault(a[i],0)
+returns the value of key specified
+3. map.keySet() returns set.
+for (String i : capitalCities.keySet()) {
+  System.out.println("key: " + i + " value: " + capitalCities.get(i));
+}
+4. map.values() returns a 
+// Print values
+for (String i : capitalCities.values()) {
+  System.out.println(i);
+}
+5. map.containsKey
+6. map.containsValue
