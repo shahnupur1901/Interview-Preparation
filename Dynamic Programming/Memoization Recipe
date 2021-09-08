@@ -1,0 +1,8 @@
+1. Get a recursive function and make it work.
+  - visualize as a tree
+  - implement tree into recursion. leaf : base case
+  - test it
+2. Make it efficient.
+ - Add a new Object memo like set, map and make sure it is shared.
+ - add a base case memo to check if it is in the object.
+ - store return values and check that out
