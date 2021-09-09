@@ -1,0 +1,5 @@
+/*
+LRU Cache
+HASHMAP is perfect
+linked list to make the priority - recently used ahead, other behind. will be a queue
+*/
