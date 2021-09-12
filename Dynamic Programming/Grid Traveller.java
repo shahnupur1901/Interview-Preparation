@@ -36,3 +36,39 @@ class Solution {
     }
     
 }
+
+/*
+Tabulation :
+table with size +1
+grid m,n ---> create table of size m+1, n+1
+initialize with 0
+grid[1][1] = 1---> 1 way
+move row by row
+add the current num to the right and bottom grid spaces
+work for rn + work then
+T : O(mn)
+S : O(mn)
+*/
+class Solution {
+    public int uniquePaths(int m, int n) {
+        int numways = 0;
+        int[][] matrix = new int[m+1][n+1];
+        matrix[1][1] = 1;
+        for(int i = 0;i<m+1;i++){
+            for(int j = 0;j<n+1;j++){
+                if(i+1 < m+1){
+                    matrix[i+1][j] = matrix[i][j] + matrix[i+1][j];
+                }
+                 if(j+1 < n+1){
+                    matrix[i][j+1] = matrix[i][j] + matrix[i][j+1];
+                }
+                System.out.print(matrix[i][j]);
+            }
+            System.out.println();
+            
+        }
+        return matrix[m][n];
+    }
+
+    
+}
