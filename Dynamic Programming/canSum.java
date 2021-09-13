@@ -26,3 +26,29 @@ Space : O(m)
         return false;
     }
 }
+/*
+Tabulation :
+size : target + 1
+if target == 0, true. so table[0] = true
+make each accessible solution true
+*/
+class Solution {
+    public boolean canSum(int[] nums, int target) {
+        boolean[] table = new boolean[target+1];
+        Arrays.fill(table,false);
+        table[0] = true;//target = 0 implies you can get it with no number
+        for(int i=0;i<table.length;i++){
+            if(table[i]==false)
+                continue;
+            else{
+                for(int j : nums){
+                    if(i+j<target+1) table[i+j] = true;
+                }
+            }
+        }
+        return table[target];
+       
+      
+    }
+   
+}
