@@ -46,3 +46,28 @@ public ArrayList<Integer> canSum(int[] nums, int target, HashMap<Integer, ArrayL
        return null;
     }
 }
+
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        ArrayList<Integer>[] table = new ArrayList[target + 1];
+        Arrays.fill(table,null);
+        table[0] = new ArrayList();
+        for(int i=0;i<table.length;i++){
+            if(table[i]==null)
+                continue;
+            else{
+                for(int j : nums){
+                    if(i+j<target+1){
+                        ArrayList<Integer> l = new ArrayList(table[i]);
+                        l.add(j);
+                        table[i+j] = l;
+                    }
+                }
+            }
+        }
+        System.out.println(table[target]);
+        return nums;
+      
+    }
+   
+}
