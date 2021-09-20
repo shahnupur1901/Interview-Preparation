@@ -1,0 +1,88 @@
+Basic :
+
+show databases;
+create database database_name;
+use database_name;
+desc table_name;
+
+CRUD :
+Create a Table :
+1. Creation
+create Table students(
+    -> c_no int auto_increment primary key,
+    -> name varchar(20) not null,
+    -> city varchar(10) default "Pune",
+    -> phonenum bigint unique);
+
+auto increment starts by 1 by default.
+
+create table payment( 
+    -> p_no int auto_increment primary key,
+    -> p_amt int default 10000,
+    -> p_date date,
+    -> c_no int not null,
+    -> foreign key(c_no) references students(c_no));
+    
+For easy deletion :
+create table payment( 
+    -> p_no int auto_increment primary key,
+    -> p_amt int default 10000,
+    -> p_date date,
+    -> c_no int not null,
+    -> foreign key(c_no) references students(c_no) on delete cascade);
+  
+2. Insertion : 
+into students :
+insert into students values (null, "Nupur", default, 99999999); //city = Pune, autoincrement works independently
+insert into students values (null, "Nur", "Boston", 99994444);
+
+Alter a table : 
+1. auto_increment
+alter table students auto_increment = 100;
+
+2. Foreign key deletion, drop earlier constraint. Add new constraint with delete on cascade constraint
+show create table table_name;
+ALTER TABLE table_name DROP FOREIGN KEY constraint_name; //constraint name = "purchase_fk_1" type 
+alter table Purchase add constraint c_no foreign key(c_no) references Customer(c_no) on delete cascade;
+
+3. Add a column 
+  alter table student add percent int //alter table student add newcolname datatype 
+
+4. Drop a column
+  alter table students drop column percent;
+  
+5. Modify data type of column
+  alter table student alter column phoneNum string
+  
+
+3. Update
+update table Item
+    ->set i_price = 100;
+    where i_no = 22;
+    
+4. Delete
+delete from table Purchase where p_id = 5;
+
+5. Order by
+select i_name from Item order by i_price;
+select i_name from Item order by i_price desc;
+
+6. pattern matching
+select i_name from Item where i_name = "_n%";
+
+AGGREGATE FUNCTIONS
+7. min, avg, sum, max,count :
+select min(i_price) from Item;
+select i_name, i_price from Item
+where i_price = (select min(i_price) from Item);
+
+
+
+
+
+
+
+
+
+
+
