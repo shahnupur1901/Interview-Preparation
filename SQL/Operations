@@ -4,6 +4,7 @@ show databases;
 create database database_name;
 use database_name;
 desc table_name;
+select col1, col2, from Table_name;
 
 CRUD :
 Create a Table :
@@ -67,14 +68,67 @@ delete from table Purchase where p_id = 5;
 select i_name from Item order by i_price;
 select i_name from Item order by i_price desc;
 
-6. pattern matching
-select i_name from Item where i_name = "_n%";
+6. pattern matching : like
+1. select i_name from Item where i_name like "_n%";
+2. sttarting with S : select i_name from Item where i_name like "S%";
+3. ending with fy : select * from Item where name like "%fy";
+4. Containing w : select * from Item where name like "%w%";
+5. Containing 5 characters : select * from Item where name like "_____"; (_*5)
+
 
 AGGREGATE FUNCTIONS
 7. min, avg, sum, max,count :
 select min(i_price) from Item;
 select i_name, i_price from Item
 where i_price = (select min(i_price) from Item);
+
+NULL : is null / is not null
+
+7. Regexp
+
+8. Limit
+select * from Item limit 5; --first 5 shown
+select * from Item limit 3,4; -- start after record 3, get 4 records. you get 4 5 6 7 records
+
+9. distinct
+select distinct city from emp; -- distinct cities shown
+
+10. count rows 
+select count(*) from emp;
+
+11. between
+select * from emp
+where price between 10000 and 50000
+
+12 Date
+select * from emp where month(joindate)=3 and year(jiondate)= 2018
+
+13. group by - having
+- Partition groupwise
+- aggregate functions on each group
+- filter aggregates with having clause, or restrict to grouped
+- count(*) will not ignore null, others will.
+- having vs where : where on all rows, having on groups
+select count(empid), department group by department;
+
+
+
+14. Upper case
+seelct upper(name) from emp;
+
+15. Period operator
+say student and enrolment are 2 tables with student_id
+select student.student_id, enrolment.
+where student.student_id = enrolment.student_id
+
+16. In operator
+select * from Item where i_price in (100, 200, 500);
+
+17. All
+
+18. Any
+
+19. 
 
 
 
