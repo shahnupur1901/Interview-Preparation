@@ -13,6 +13,7 @@ create Table students(
     -> c_no int auto_increment primary key,
     -> name varchar(20) not null,
     -> city varchar(10) default "Pune",
+    -> age int check(age>18),
     -> phonenum bigint unique);
 
 auto increment starts by 1 by default.
