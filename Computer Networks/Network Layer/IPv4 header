@@ -1,0 +1,32 @@
+IP = connectionless + datagram
+Header size : 20B to 60B
+Payload : 0B to 65515B
+Total IP datagram : 20B to 65535B (2^16)
+4 bit version : 0100 IPv4 
+                0101 IPv6
+                
+4 bit HLEN : Header length = 4 * (HLEN)decimal
+
+8 bit Type of Service : Differentiated services code point : Low Delay, High Throughput, Reliability
+
+16 bit total length = header + payload
+
+identification + flag + fragmentation offset :
+ID = 16 bits
+Flag = 3 bit : reserved | do not fragment | more fragments 
+do not fragment : 0 - fragmentation done
+                  1 - no fragmentation
+more fragment : 0 - last
+                1 - more fragment coming after this fragment
+fragmentation offset : payload/8 sent ahead
+
+8 bit Time to live TTL : 2 * max no of routers between 2
+
+8 bit Protocol : 
+
+16 bit Header Checksum : Error detection : TTL changes, so care taken
+
+32 bit source IP and destination IP : 
+
+options and Padding : Packet MUST be a multiple of 32 bits / 4 bytes. If not, options added
+
