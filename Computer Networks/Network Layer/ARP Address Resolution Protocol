@@ -1,0 +1,4 @@
+IP -> MAC i.e Logical to Physical
+ARP = IP of src | MAC of src | IP of dest | FFFFF...
+ARP is broadcasted to entire network by src, dest unicasts its MAC to src.
+Then cache MAC addresses and communication occurs
