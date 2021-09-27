@@ -5,6 +5,9 @@ create database database_name;
 use database_name;
 desc table_name;
 select col1, col2, from Table_name;
+select version();
+select now();
+select current_date();
 
 CRUD :
 Create a Table :
@@ -58,12 +61,18 @@ alter table Purchase add constraint c_no foreign key(c_no) references Customer(c
   
 
 3. Update
-update table Item
+update Item
     ->set i_price = 100;
     where i_no = 22;
     
-4. Delete
-delete from table Purchase where p_id = 5;
+4. Delete 
+Delete row
+delete from Purchase where p_id = 5;
+Delete column
+alter table students drop name;
+Delete table
+drop students;
+
 
 5. Order by
 select i_name from Item order by i_price;
@@ -126,10 +135,22 @@ where student.student_id = enrolment.student_id
 select * from Item where i_price in (100, 200, 500);
 
 17. All
+select * from Item where i_price < all(select 
 
 18. Any
 
-19. 
+19. Date :
+select current_date();
+update Purchase set p_date = (select current_date()) 
+select p_no, date_format(p_date,"%M %D %Y %r") from Purchase;
+
+20. Union
+select * from Customer where i_no = 1
+union 
+select * from Customer where i_no = 5
+
+
+
 
 
 
