@@ -1,0 +1,11 @@
+Concurrency control schemes : Function concurrent processes without destroying database integrity
+
+Schedules : sequence of instructions to order instructions of concurrent transactions
+last operation of each transaction : commit/abort
+
+Serial and Parallel Schedules 
+
+A schedule is serializable if it is equivalent to the serial schedule.
+Schedule equivalence - 
+Conflict Serializability
+View Serializability
