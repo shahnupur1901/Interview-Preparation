@@ -13,6 +13,8 @@ Criteria :
 
 Dirty read -> No : Recoverable schedule
             -> Yes : -> T2 dirty reads T1, T2 commits after T1 -> recoverable
+            Order : T1 -dirty bit---> T2, T1 -commits before---->T2
+            Same order = Recoverable
                         wA
                             rA
                         C
