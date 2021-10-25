@@ -1,0 +1,28 @@
+T1        T2
+rA        
+A=A+10
+wA
+          rA -------------> Dirty read. T2 is reading uncommitted data of T1
+          A=A-5
+          wA
+          C
+C
+
+
+Criteria :
+
+Dirty read -> No : Recoverable schedule
+            -> Yes : -> T2 dirty reads T1, T2 commits after T1 -> recoverable
+                        wA
+                            rA
+                        C
+                            C
+                        Reoverable
+                        
+                        else :
+                        wA
+                            rA
+                            C
+                        C
+                        irrecoverable
+
