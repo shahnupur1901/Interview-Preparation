@@ -1,0 +1,35 @@
+Cascading rollbacks :
+When a transaction rolls back due to another transaction rolling back.
+Consistent? Yes.
+Efficiency? No. Lot of roll backs
+
+T1  T2  T3
+rA
+WA  
+    rA---> dirty reads from T1
+    WA
+        rA---> dirty reads from T2
+C     
+    C 
+       c
+Order T1->T2->T3
+Thus, cascading order for recoverable -> T1->T2->T3
+Cascading rollback:
+Say before 1st commit : failure. ALl 3 can be rolled back
+T1 rollbacks, Seeting that T2 rollbacks, then T3 rollbacks
+
+Cascadeless schedule : Not mandatory
+No Cascade rollbacks
+Thus, no dirty reads should be present. Eliminate dirty reads
+If yes, commit right after the write before the other transaction dirty reads it
+Every cascadeless schedule is recoverable, vice versa not true.
+
+T1  T2  T3
+rA
+WA
+C
+    rA
+    WA
+    C
+        rA
+        C
