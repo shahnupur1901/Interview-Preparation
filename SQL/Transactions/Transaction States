@@ -1,0 +1,12 @@
+Active - Transaction is running
+Partially committed - after final statement has been executed
+Failed 
+Aborted - Transaction is rolled back and database goes to the state prior to this transaction
+          Options after abortion - Deletion or Restart
+Committed - Successfule completion, permanently done
+
+  active  ->  partially committed -> commited
+      |         |
+      |         |
+      |----->  failed -> aborted
+
