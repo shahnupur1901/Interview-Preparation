@@ -1,0 +1,30 @@
+For consistency, isolation is an important idea. 
+Locking achieves isolation.
+To perform an operation on a data item :
+request for a lock
+lock it
+perform
+unlock it
+For concurrency with isolation, different modes of locks are used.
+
+1. Shared mode : lock-S instruction
+  lock-S(Q)
+  only read operation
+  any transaction can read at the same time. 
+2. Exclusive mode : lock-X
+  lock-X(Q)
+  1 transaction can perform read/write operation. No other transaction can access the data item in any other mode.
+  
+  Compatibility table :
+  
+                    Shared          Exclusive
+  
+  Shared            True            False
+  
+  Exclusive         False           False
+  
+  
+  Can have
+  -no serializability
+  -inconsistency
+  
