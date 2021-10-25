@@ -1,0 +1,18 @@
+Unit of program execution to access or update data
+1. Atomicity :
+Either all operations of transactions or none are reflected in the database.
+
+2. Consistency :
+Consistent database at start and end of transaction
+Consistency requirements:
+1. Explicitly specified integrity constraints
+  -primary key
+  -foreign key
+2. Implicit integrity constraints
+  - cash in hand = sum of balances - sum of loans
+
+3. Isolation
+Although multiple transactions occur concurrently, each transaction must be unaware of the other. Intermediate transaction results must be hidden.
+
+4. Durability
+After a successful transaction, the changes to the database must persist even if there are any system failures.
