@@ -1,0 +1,27 @@
+Implicit and Explicit Cursors
+
+-in functions, procedures and triggers
+-Implicit cursor : 
+1. CRUD DML operations
+2. To refer to the most recent implicit cursor :
+%found, %isopen, %notfound
+access like : if sql%notfound then
+
+-Explicit cursor
+1. declare for initializing memory -> open for allocating memory -> fetch to retrieve data -> close to deallocate memory
+2. read-only, non-scrollable, asensitive(points to actual data)
+3. Declare after all variable declaration
+declare rollid, mtotal int;
+declare done int default 0;
+declare c1 cursor for select id, total from Student;
+4. Exception handling
+declare continue handler for not found set done = 1;
+5. Open cursor
+open c1;
+6. Loop through all rows
+l1 : loop
+fetch c1 into rollid, mtotal;
+end loop l1;
+7. close cursor
+close c1;
+
