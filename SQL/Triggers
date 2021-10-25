@@ -1,0 +1,13 @@
+A procedure that occurs automatically if specified changes occur to the DBMS
+
+create trigger tname before/after insert/update/delete
+on tableName
+for each row
+begin
+
+end
+
+new.id + new.mark
+old.marks + old.id
+
+
