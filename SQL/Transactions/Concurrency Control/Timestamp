@@ -1,0 +1,11 @@
+Timestamp = ordering
+large timestamp = recent
+
+RTS, WTS timestamp of most recent transactions of R and W respectively
+
+1. Read 24
+Possible if Read 24 >= WTS
+
+2. Write 58
+Possile id Write 58 >=RTS and 58>=WTS
+
