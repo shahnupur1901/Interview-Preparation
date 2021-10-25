@@ -1,0 +1,17 @@
+Create a picture of database with required fields only
+create view StudentView as
+select id, address, phno from Student;
+
+Different column names 
+create view StudentView(Rollno, City, ContactNo) as
+select id, address, phno from Student;
+
+//views with 2 tables
+create view StudentParent(StudentName, ParentName, city) as
+select Student.name, Parent.name, Student.city
+from Student, Parent
+where Student.name = Parent.childname;
+
+View can be updated when :
+- Based on 1 table
+- Contains primary key
