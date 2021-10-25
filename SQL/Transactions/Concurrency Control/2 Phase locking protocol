@@ -1,0 +1,7 @@
+Growing phase : acquire locks, not release them
+shrinking phase : release locks not acquire
+lock point : where final lock is acquired/first lock unlocked. The lock point order is serializabilty order.
+These phases occur to each transaction not complete schedule!
+Can generate irrecoverable / cascading rollbacks (dirty reads may be present with wrong commit order)
+No assurance from deadlock 
+-we have conflict serializability
