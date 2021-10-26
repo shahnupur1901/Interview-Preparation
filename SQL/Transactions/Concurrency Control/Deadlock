@@ -1,0 +1,67 @@
+A system is in a deadlock state, if there exists a set of transactions such that every transaction in the set is waiting for another transaction in the set.
+Waiting transactions t0,t1,t2,...tn-1, such that t0->t1, t1->t2, t3->t4,...tn-1->t0  =  deadlock
+
+Conditions required for deadlock
+Mutual Exclusion
+Hold n wait
+No pre-emption
+Circular wait
+
+T1              T2
+lock-X on X
+write X
+                lock-X on Y
+                write Y
+                lock-X on X----> has to wait
+lock-X on Y----> has to wait
+
+Less efficiency, resource utilization, nothing is happening!
+
+Deadlock Prevention
+If any 1 necessary deadlock condition is made false
+
+1. Acquire all locks needed for a transaction before execution -conservative 2PL
+2. For no cyclic wait : Order the data items. Acquire locks in increasing fashion, if a smaller is reqd, release the locks>reqd lock
+DELIMITER $$
+
+CREATE PROCEDURE set_class()
+BEGIN
+
+DECLARE mks int;
+DECLARE no int;
+DECLARE done INT DEFAULT 0;
+
+DECLARE c1 CURSOR FOR
+SELECT rno,tot_mks from student;
+
+DECLARE CONTINUE HANDLER FOR
+NOT FOUND SET done = 1;
+OPEN c1;
+L1 : LOOP
+
+FETCH c1 into no,mks;
+if mks<1500 and mks >990 then
+update student set class = 'distinction'
+where rno=no;
+end if;
+
+if mks<990 and mks >900 then
+update student set class = 'first class'
+where rno=no;
+end if;
+if mks<825 and mks >600 then
+update student set class = 'second
+class' where rno=no;
+end if;
+
+if mks<600 then
+update student set class = 'fail' where
+rno=no;
+end if;
+end loop L1;
+close c1;
+
+select 'successful update';
+END$$
+
+DELIMITER ;
