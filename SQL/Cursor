@@ -24,4 +24,47 @@ fetch c1 into rollid, mtotal;
 end loop l1;
 7. close cursor
 close c1;
+DELIMITER $$
+
+CREATE PROCEDURE set_class()
+BEGIN
+
+DECLARE mks int;
+DECLARE no int;
+DECLARE done INT DEFAULT 0;
+
+DECLARE c1 CURSOR FOR
+SELECT rno,tot_mks from student;
+
+DECLARE CONTINUE HANDLER FOR
+NOT FOUND SET done = 1;
+OPEN c1;
+L1 : LOOP
+
+FETCH c1 into no,mks;
+if mks<1500 and mks >990 then
+update student set class = 'distinction'
+where rno=no;
+end if;
+
+if mks<990 and mks >900 then
+update student set class = 'first class'
+where rno=no;
+end if;
+if mks<825 and mks >600 then
+update student set class = 'second
+class' where rno=no;
+end if;
+
+if mks<600 then
+update student set class = 'fail' where
+rno=no;
+end if;
+end loop L1;
+close c1;
+
+select 'successful update';
+END$$
+
+DELIMITER ;
 
