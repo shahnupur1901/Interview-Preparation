@@ -1,0 +1,368 @@
+Nupur Shah
+C22019221444
+
+mysql> delimiter ;
+mysql> call updateItem (1001,10);
+Query OK, 1 rows affected (0.00 sec)
+
+mysql> delimiter //
+mysql> create procedure printName(in name varchar(20), in n int)
+    -> begin
+    
+    -> declare i int;
+    -> set i = 0;
+    -> while i < n do
+    -> select name;
+    -> i = i+1;
+    -> end while
+    -> ;
+    -> end
+    -> //
+mysql> delimiter ;
+mysql> call printName("Nupur",5);
++-------+
+| name  |
++-------+
+| Nupur |
++-------+
+1 row in set (0.00 sec)
+
++-------+
+| name  |
++-------+
+| Nupur |
++-------+
+1 row in set (0.00 sec)
+
++-------+
+| name  |
++-------+
+| Nupur |
++-------+
+1 row in set (0.00 sec)
+
++-------+
+| name  |
++-------+
+| Nupur |
++-------+
+1 row in set (0.00 sec)
+
++-------+
+| name  |
++-------+
+| Nupur |
++-------+
+
+create procedure updateItem(in i_no int, in newprice int)
+begin
+->declare continue handler for not found select 'Record Not Found!' as errmsg;
+update Item
+set i_price = newprice
+where Item.i_no = i_no;
+end
+
+mysql> call updateItem(1011,9);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from Item;
++------+-------------+-------------+---------+---------+
+| i_no | i_name      | i_type      | i_price | i_count |
++------+-------------+-------------+---------+---------+
+| 1001 | Pen         | Stationary  |      10 |     100 |
+| 1002 | Pencil      | Stationary  |       7 |     100 |
+| 1003 | Paper       | Stationary  |       7 |     100 |
+| 1004 | Shoes       | Footwear    |    1100 |      10 |
+| 1005 | Tops        | Clothing    |    1100 |     100 |
+| 1006 | Trousers    | Clothing    |    1100 |     100 |
+| 1007 | Shampoo     | Hygiene     |     242 |     100 |
+| 1008 | Conditioner | Hygiene     |     242 |     100 |
+| 1009 | Biscuits    | Food        |     638 |    1000 |
+| 1010 | Crackers    | Food        |      24 |    1000 |
+| 1011 | Mixer       | Electronics |       9 |      50 |
+| 1012 | Television  | Electronics |   66000 |      20 |
+| 1013 | Laptop      | Electronics |   66000 |      20 |
+| 1014 | Spoon       | Utensils    |      24 |     200 |
+| 1015 | Bowl        | Utensils    |     242 |     200 |
+| 1016 | Dinner Set  | Utensils    |    1100 |      20 |
+| 1017 | Nup         | untep       |      60 |    NULL |
++------+-------------+-------------+---------+---------+
+17 rows in set (0.00 sec)
+
+
+delimiter //
+create procedure Book_Return(in Mem_id int, in Bno int, in Issue_Dt date)
+begin
+
+declare issuedays int;
+declare totalfine int;
+declare continue handler for sqlstate'02000' select 'Cannot find the record!' as errmsg;
+set issuedays = datediff(sysdate(),Issue_Dt);
+select issuedays;
+
+if issuedays between 15 and 30 then
+set issuedays = issuedays - 15;
+set totalfine = issuedays * 5;
+update IssueReturn set fine = totalfine where IssueReturn.Mem_ID = Mem_id and IssueReturn.BNo = BNo;
+end if;
+
+if issuedays>=30 then
+set issuedays = issuedays - 30;
+set totalfine = issuedays * 50;
+select totalfine;
+update IssueReturn set fine = totalfine where IssueReturn.Mem_ID = Mem_id and IssueReturn.BNo = BNo;
+end if;
+
+update Books set status = "R" where Books.BNo = BNo;
+update IssueReturn set Return_Dt = sysdate() where IssueReturn.Mem_ID = Mem_id and IssueReturn.BNo = BNo;
+select "Successful updation!";
+end
+//
+
+create procedure(
+mysql> create table Books( BNo int primary key auto_increment, BName varchar(20), Publisher varchar(20), DOP date, status varchar(1));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> create table IssueReturn (
+    -> Mem_ID int primary key auto_increment,
+    -> BNo int,
+    -> Issue_Dt date,
+    -> Return_Dt date,
+    -> fine int default 0);
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> alter table Books auto_increment = 1001
+    -> ;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into Books values(null,"c++","abc",'2015-01-20','I');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Books values(null,"c++","abc",'2015-01-20','R');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Books values(null,"c++","abc",'2015-01-20','R');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Books values(null,"c++","abc",'2015-01-20','R');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Books values(null,"java","pqr",'2000-07-01','R');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into Books values(null,"java","pqr",'2000-07-01','R');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Books values(null,"java","pqr",'2000-07-01','R');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Books values(null,"java","pqr",'2000-07-01','R');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into Books values(null,"dbms","pqr",'2003-11-01','I');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Books values(null,"dbms","pqr",'2003-11-01','R');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Books values(null,"dbms","pqr",'2003-11-01','R');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from Books;
++------+-------+-----------+------------+--------+
+| BNo  | BName | Publisher | DOP        | status |
++------+-------+-----------+------------+--------+
+| 1001 | c++   | abc       | 2015-01-20 | I      |
+| 1002 | c++   | abc       | 2015-01-20 | R      |
+| 1003 | c++   | abc       | 2015-01-20 | R      |
+| 1004 | c++   | abc       | 2015-01-20 | R      |
+| 1005 | java  | pqr       | 2000-07-01 | R      |
+| 1006 | java  | pqr       | 2000-07-01 | R      |
+| 1007 | java  | pqr       | 2000-07-01 | R      |
+| 1008 | java  | pqr       | 2000-07-01 | R      |
+| 1009 | dbms  | pqr       | 2003-11-01 | I      |
+| 1010 | dbms  | pqr       | 2003-11-01 | R      |
+| 1011 | dbms  | pqr       | 2003-11-01 | R      |
++------+-------+-----------+------------+--------+
+11 rows in set (0.00 sec)
+
+mysql> insert into IssueReturn values(null,1011,'2017-05-03',null,default);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into IssueReturn values(null,1010,'2017-06-30',null,default);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into IssueReturn values(null,1005,'2017-06-24',null,default);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into IssueReturn values(null,1001,'2017-06-12',null,default);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into IssueReturn values(null,1003,'2017-06-29',null,default);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into IssueReturn values(null,1009,'2017-06-09',null,default);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into IssueReturn values(null,1002,'2017-06-19',null,default);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from IssueReturn;
++--------+------+------------+-----------+------+
+| Mem_ID | BNo  | Issue_Dt   | Return_Dt | fine |
++--------+------+------------+-----------+------+
+|      1 | 1011 | 2017-05-03 | NULL      |    0 |
+|      2 | 1010 | 2017-06-30 | NULL      |    0 |
+|      3 | 1005 | 2017-06-24 | NULL      |    0 |
+|      4 | 1001 | 2017-06-12 | NULL      |    0 |
+|      5 | 1003 | 2017-06-29 | NULL      |    0 |
+|      6 | 1009 | 2017-06-09 | NULL      |    0 |
+|      7 | 1002 | 2017-06-19 | NULL      |    0 |
++--------+------+------------+-----------+------+
+7 rows in set (0.00 sec)
+mysql> create table student( RNo int primary key auto_increment, SName varchar(20), totmarks int, class int default null);
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into student values(null,"a",1200,default);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student values(null,"ab",950,default);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student values(null,"abc",850,default);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student values(null,"c",750,default);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student values(null,"b",550,default);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> 
+
+
+create procedure ClassUpdate()
+begin
+declare rollno, marks int;
+declare done int default 0;
+declare c1 cursor for select RNo,totmarks from student;
+DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
+open c1; 
+l1 :loop
+fetch c1 into rollno, marks;
+select rollno;
+select marks;
+if marks between 990 and 1500 then
+update student set class = "Distinction" where RNo = rollno;
+end if;
+if marks between 900 and 990 then
+update student set class = "First class" where RNo = rollno;
+end if;
+if marks between 825 and 900 then
+update student set class = "Higher second class" where RNo = rollno;
+end if;
+if marks between 600 and 825 then
+update student set class = "Second class" where RNo = rollno;
+end if;
+if marks<600 then
+update student set class = "Fail" where RNo = rollno;
+end if;
+end loop l1;
+close c1; 
+select "successful update!";
+end//
+
+mysql> call ClassUpdate();
+
+mysql> select * from student;
++-----+-------+----------+---------------------+
+| RNo | SName | totmarks | class               |
++-----+-------+----------+---------------------+
+|   1 | a     |     1200 | Distinction         |
+|   2 | b     |      550 | Fail                |
+|   3 | c     |      750 | Second class        |
+|   4 | abc   |      850 | Higher second class |
+|   5 | ab    |      950 | First class         |
++-----+-------+----------+---------------------+
+5 rows in set (0.00 sec)
+
+create function countNumInClasses(c varchar(20)) 
+returns int
+begin
+declare cnt int;
+select count(*) into cnt from student where class=c;
+return cnt;
+end
+//
+Query OK, 0 rows affected (0.00 sec)
+mysql> select countNumInClasses("Distinction");
++----------------------------------+
+| countNumInClasses("Distinction") |
++----------------------------------+
+|                                1 |
++----------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select countNumInClasses("First Class");
++----------------------------------+
+| countNumInClasses("First Class") |
++----------------------------------+
+|                                1 |
++----------------------------------+
+1 row in set (0.00 sec)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+delimiter //
+create procedure calcTax()
+begin
+declare done int default 0;
+declare tax int default 0;
+declare ceno,csalary int;
+declare c1 cursor for select eno, salary from employee;
+declare continue handler for not found set done=1;
+open c1;
+l1:loop
+fetch c1 into ceno, csalary;
+if csalary < 250000 then
+update employee set employee.tax = 0 where eno = ceno;
+end if;
+if csalary between 250000 and 500000 then
+update employee set employee.tax = 0.05*csalary where eno = ceno;
+end if;
+end loop l1;
+close c1;
+end//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
