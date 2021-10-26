@@ -22,46 +22,16 @@ If any 1 necessary deadlock condition is made false
 
 1. Acquire all locks needed for a transaction before execution -conservative 2PL
 2. For no cyclic wait : Order the data items. Acquire locks in increasing fashion, if a smaller is reqd, release the locks>reqd lock
-DELIMITER $$
+3. Wait and die : Non-pre-emptive : Ti--wants--> Q--is locked on by->Tj
+if timestamp i < timestamp j (i is older than j) ,Ti must wait
+else Ti is younger and should rollback, but here timestamp is not updated. So, Ti is dies multple dies before getting lock.
+4. Wound Wait : Pre-emptive : Ti--wants--> Q--is locked on by->Tj
+if timestamp i < timestamp j (i is older than j) ,resource from Tj preempted, given to Ti
+else Ti is younger and should wait.
+5. Lock timeout : Wait for x time, if lock acquired, good, else rollback
 
-CREATE PROCEDURE set_class()
-BEGIN
+Deadlock Detection : Wait-for graph
 
-DECLARE mks int;
-DECLARE no int;
-DECLARE done INT DEFAULT 0;
-
-DECLARE c1 CURSOR FOR
-SELECT rno,tot_mks from student;
-
-DECLARE CONTINUE HANDLER FOR
-NOT FOUND SET done = 1;
-OPEN c1;
-L1 : LOOP
-
-FETCH c1 into no,mks;
-if mks<1500 and mks >990 then
-update student set class = 'distinction'
-where rno=no;
-end if;
-
-if mks<990 and mks >900 then
-update student set class = 'first class'
-where rno=no;
-end if;
-if mks<825 and mks >600 then
-update student set class = 'second
-class' where rno=no;
-end if;
-
-if mks<600 then
-update student set class = 'fail' where
-rno=no;
-end if;
-end loop L1;
-close c1;
-
-select 'successful update';
-END$$
-
-DELIMITER ;
+Deadlock recovery:
+Rollback transaction with minimum costs
+cost = number of rollback
