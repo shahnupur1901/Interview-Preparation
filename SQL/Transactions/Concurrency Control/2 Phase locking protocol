@@ -4,4 +4,8 @@ lock point : where final lock is acquired/first lock unlocked. The lock point or
 These phases occur to each transaction not complete schedule!
 Can generate irrecoverable / cascading rollbacks (dirty reads may be present with wrong commit order)
 No assurance from deadlock 
--we have conflict serializability
+conflict serializability present
+
+1. Strict 2 phase locking : Hold all exclusive locks till commit/abort , no cascading rollbacks
+2. Rigorous 2 phase locking : Hold all locks till commit/abort
+
