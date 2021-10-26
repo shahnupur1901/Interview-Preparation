@@ -1,3 +1,5 @@
+No deadlocks can occur!
+
 Timestamp = ordering
 large timestamp = recent
 
