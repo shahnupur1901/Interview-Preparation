@@ -6,8 +6,10 @@ select * from emp cross join dept;
 select * from emp natural join dept;
 
 3. Inner join : natural join + other reqd conditions 
-select * from emp, dept
-where emp.e_no = dept.e_no and emp.city = dept.city;
+
+SELECT Orders.OrderID, Customers.CustomerName
+FROM Orders
+INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID;
 
 4. Left outer join : matching rows + non matching rows in left 
 select * from emp left join dept on emp.e_no = dept.e_no;
