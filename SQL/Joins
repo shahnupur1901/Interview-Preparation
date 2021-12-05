@@ -5,14 +5,15 @@ select * from emp cross join dept;
 2. Natural join : only matching rows.
 select * from emp natural join dept;
 
-3. Inner join : natural join + other reqd conditions 
+3. Inner join : cross join + other reqd conditions 
+SELECT Orders.OrderID, Customers.CustomerName FROM Orders INNER JOIN Customers #Works like cross join
 
-SELECT Orders.OrderID, Customers.CustomerName
-FROM Orders
-INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID;
+SELECT Orders.OrderID, Customers.CustomerName FROM Orders INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID;
 
 4. Left outer join : matching rows + non matching rows in left 
+So, even if right doesn't contain foreign key referencing the left values, the remaining left values will be seen with null
 select * from emp left join dept on emp.e_no = dept.e_no;
 
 5. Full outer join : matching rows + non matching rows in left and right
 select * from emp full join dept on emp.e_no = dept.e_no;
+NOT SUPPORTED IN MYSQL
