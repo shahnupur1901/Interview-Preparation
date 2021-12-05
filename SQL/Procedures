@@ -1,0 +1,29 @@
+as
+into
+DELIMITER &&  
+CREATE PROCEDURE get_student (IN var1 INT)  
+BEGIN  
+    SELECT * FROM student_info LIMIT var1;  
+    SELECT COUNT(stud_code) AS Total_Student FROM student_info;    
+END &&  
+DELIMITER ;  
+CALL get_student(4);  
+
+DELIMITER &&  
+CREATE PROCEDURE display_max_mark (OUT highestmark INT)  
+BEGIN  
+    SELECT MAX(marks) INTO highestmark FROM student_info;   
+END &&  
+DELIMITER ;  
+mysql> CALL display_max_mark(@M);  
+mysql> SELECT @M;  
+
+DELIMITER &&  
+CREATE PROCEDURE display_marks (INOUT var1 INT)  
+BEGIN  
+    SELECT marks INTO var1 FROM student_info WHERE stud_id = var1;   
+END &&  
+DELIMITER ;  
+mysql> SET @M = '3';  
+mysql> CALL display_marks(@M);  
+mysql> SELECT @M;  
