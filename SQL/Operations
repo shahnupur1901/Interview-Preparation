@@ -46,6 +46,7 @@ Alter a table :
 alter table students auto_increment = 100;
 
 2. Foreign key deletion, drop earlier constraint. Add new constraint with delete on cascade constraint
+
 show create table table_name;
 ALTER TABLE table_name DROP FOREIGN KEY constraint_name; //constraint name = "purchase_fk_1" type 
 alter table Purchase add constraint c_no foreign key(c_no) references Customer(c_no) on delete cascade;
@@ -57,7 +58,7 @@ alter table Purchase add constraint c_no foreign key(c_no) references Customer(c
   alter table students drop column percent;
   
 5. Modify data type of column
-  alter table student alter column phoneNum string
+  alter table student modify column phoneNum string
   
 
 3. Update
@@ -111,7 +112,7 @@ select * from emp
 where price between 10000 and 50000
 
 12 Date
-select * from emp where month(joindate)=3 and year(jiondate)= 2018
+select * from emp where month(joindate)=3 and year(joindate)= 2018
 
 13. group by - having
 - Partition groupwise
@@ -140,9 +141,12 @@ select * from Item where i_price < all(select
 18. Any
 
 19. Date :
+
+date insert in format : ('yyyy-mm-dd')
 select current_date();
 update Purchase set p_date = (select current_date()) 
 select p_no, date_format(p_date,"%M %D %Y %r") from Purchase;
+
 
 20. Union
 select * from Customer where i_no = 1
