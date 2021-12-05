@@ -27,3 +27,8 @@ DELIMITER ;
 mysql> SET @M = '3';  
 mysql> CALL display_marks(@M);  
 mysql> SELECT @M;  
+
+
+EXCEPTION HANDLING
+declare continue handler for sqlstate'0200' select "not found" as errmsg;
+declare continue handler for not found select "not found" as errmsg;
