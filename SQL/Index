@@ -1,0 +1,9 @@
+Indexes are used to retrieve data from the database more quickly than otherwise. The users cannot see the indexes, they are just used to speed up searches/queries.
+
+set profiling 1;
+
+create index i1 on emp(ename);
+
+show index from emp\G;
+
+show profiles;
