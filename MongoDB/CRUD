@@ -1,0 +1,38 @@
+Create :
+db.createCollection("employee")
+
+Read :
+db.employee.find.pretty()
+
+Update :
+db.employee.update({"EmpNo" : 111}, {$set : {"Address":{"lat":20.00, "lon":90.99}}})
+
+Delete
+db.employee.delete({"name" : "Nupur"})
+
+Increment 
+db.employee.update({"EmpNo" : 111}, {$inc : {"age" : 1}})
+{multi:true} parameter
+
+Letter :
+starting
+db.cities.find({"city" : /^B/})
+ending
+db.cities.find({"city": /E$/})
+between
+db.cities.find({"city": /E/})
+
+Distinct :
+db.cities.distinct("state")
+
+Count distinct city
+db.cities.distinct("state").length
+
+Sort cities population wise
+db.cities.aggregate({$sort : {"pop":-1}},{$project:{"city":1, "pop":1}})
+
+Array as value of a key in document : "arrayname.index"
+db.cities.aggregate({$match : {"loc.1" : {$lt:100, $gt:-100}}})
+
+Index
+db.cities.createIndex({"state":1})
