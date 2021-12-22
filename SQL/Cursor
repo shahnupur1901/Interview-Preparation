@@ -21,6 +21,9 @@ open c1;
 6. Loop through all rows
 l1 : loop
 fetch c1 into rollid, mtotal;
+if done = 1 then
+    -> leave l1;
+    -> end if;
 end loop l1;
 7. close cursor
 close c1;
@@ -42,6 +45,9 @@ OPEN c1;
 L1 : LOOP
 
 FETCH c1 into no,mks;
+if done = 1 then
+    -> leave l1;
+    -> end if;
 if mks<1500 and mks >990 then
 update student set class = 'distinction'
 where rno=no;
