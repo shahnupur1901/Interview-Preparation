@@ -1,0 +1,35 @@
+db.cities.aggregate([
+... {$group : {_id : "$state", avgpop : {$avg : "$pop"}}}])
+
+db.cities.aggregate([
+... {$group : {_id : "state", numCities : {$sum : 1}}}])
+
+db.cities.aggregate([
+... {$sort : {"pop" : 1}},
+... {$limit : 10},
+... {$project : {"city":1, "state":1}}])
+
+db.cities.aggregate([ {$match : {"loc.1" : {$lt : 90, $gt:10}}}])
+
+db.cities.createIndex({"state" : 1})
+db.cities.getIndexes()
+
+> db.employee.aggregate([ {$group : {_id : "$dept", avgSalary : {$avg : "$age"}}}])
+
+db.employee.count()
+
+> var mapper= function() { emit(this.state, this.pop) }
+> var reducer = function(key, value) { return Array.avg(value) }
+> db.cities.mapReduce(mapper, reducer, { out : "val", query : {"state" : "NH"}})
+{
+	"result" : "val",
+	"timeMillis" : 84,
+	"counts" : {
+		"input" : 9,
+		"emit" : 9,
+		"reduce" : 1,
+		"output" : 1
+	},
+	"ok" : 1
+
+
