@@ -2,7 +2,7 @@ db.cities.aggregate([
 ... {$group : {_id : "$state", avgpop : {$avg : "$pop"}}}])
 
 db.cities.aggregate([
-... {$group : {_id : "state", numCities : {$sum : 1}}}])
+... {$group : {_id : "$state", numCities : {$sum : 1}}}])
 
 db.cities.aggregate([
 ... {$sort : {"pop" : 1}},
