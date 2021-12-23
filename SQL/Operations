@@ -136,9 +136,20 @@ where student.student_id = enrolment.student_id
 select * from Item where i_price in (100, 200, 500);
 
 17. All
-select * from Item where i_price < all(select 
+SELECT ProductName
+FROM Products
+WHERE ProductID = ALL
+  (SELECT ProductID
+  FROM OrderDetails
+  WHERE Quantity = 10);
 
 18. Any
+SELECT ProductName
+FROM Products
+WHERE ProductID = ANY
+  (SELECT ProductID
+  FROM OrderDetails
+  WHERE Quantity = 10);
 
 19. Date :
 
