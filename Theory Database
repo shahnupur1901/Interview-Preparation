@@ -1,0 +1,43 @@
+SQL : structured Query language for relational database system
+Database : organized collection of data stored stored and retrieved digitally from remote/local system.
+RDBMS : stores data in foorm of tables
+SQL vs MySQL : MySQL is a relational database using SQL to query databases. MySQL is a RDBMS software, SQL is the language
+Trigger : on DML queries
+other trigger types :
+DDL/DML/Logon/CLR
+DDL: Database definition language : database schema : create alter drop
+DML : Data manipulation : IRUD
+Index : fast data retrieval 
+simple : allow duplicate value on single column
+Compound : index on multiple columns
+functions return value, procedures just have functions
+
+Mongo :
+row = document
+collection = table
+Sharding : process of splitting a large database into easily manageable shards across machines.
+Eventual Consistency : Consistency model in distributed system, no new updates to an object, all access to object will give last updated value
+Embedded document : nested document
+_id : unique identifier of documents with timestamp, random value + counter
+Aggregate functions : processing pipeline to compute results
+index : efficient and fast for query processing, without it, mongo must go through each document. Index = special data structure, in easy to traverse format. Index =  
+explain() function : return info on query 
+
+          
+Java Application -> JDBC API -> JDBC -> Driver Manager -> Driver(multiple) -> Database
+JDBC driver implement API 
+Types of JDBC drivers:
+1. JDBC-ODBC driver
+2. JDBC-Native Bridge driver : Database API and JDBC API bridge
+3. JDBC-Net Bridge driver : Drivers used with middleware products
+4. Direct JDBC driver : Written in Java
+
+Statement
+conn.createStatement()
+executeQuery() returns result set
+executeUpdate() returns num rows
+
+CallableStatement : call database stored procedures, can accept runtime varied values
+
+
+PreparedStatement : Compiled once, column values can be set later on
