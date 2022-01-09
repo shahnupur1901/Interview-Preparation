@@ -1,0 +1,3 @@
+A database must provide a mechanism that will ensure that all possible schedules are both:
+Conflict serializable. 
+Recoverable and preferably cascadeless
