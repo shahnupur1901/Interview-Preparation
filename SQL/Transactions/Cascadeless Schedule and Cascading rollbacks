@@ -1,5 +1,6 @@
 Cascading rollbacks :
 When a transaction rolls back due to another transaction rolling back.
+ a single transaction failure leads to a series of transaction rollbacks.
 Consistent? Yes.
 Efficiency? No. Lot of roll backs
 
@@ -33,3 +34,4 @@ C
     C
         rA
         C
+      
