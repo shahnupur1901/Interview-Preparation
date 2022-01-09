@@ -18,6 +18,9 @@ db.cities.getIndexes()
 
 db.employee.count()
 
+
+Map reduce : 
+
 > var mapper= function() { emit(this.state, this.pop) }
 > var reducer = function(key, value) { return Array.avg(value) }
 > db.cities.mapReduce(mapper, reducer, { out : "val", query : {"state" : "NH"}})
