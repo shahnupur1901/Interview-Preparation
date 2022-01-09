@@ -37,3 +37,8 @@ db.cities.aggregate({$match : {"loc.1" : {$lt:100, $gt:-100}}})
 Index
 db.cities.createIndex({"state":1})
 db.cities.getIndexes()
+
+likes is a key with array as value : ["eggs", "yarn","yoyo"] example
+check if eggs in is an array :
+array name : {$in : [what it shd contain]}
+> db.Items.find({"type" : "stationary", "likes" : {$in : ["eggs"]}})
