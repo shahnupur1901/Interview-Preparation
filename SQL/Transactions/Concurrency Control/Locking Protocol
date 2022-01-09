@@ -1,3 +1,5 @@
+Locking protocol is used for concurrent access control.
+Locking protocol : rules while relaeasing and acquiring locks
 For consistency, isolation is an important idea. 
 Locking achieves isolation.
 To perform an operation on a data item :
@@ -27,4 +29,6 @@ For concurrency with isolation, different modes of locks are used.
   Can have
   -no serializability
   -inconsistency
+  
+  Problems : Deadlock and Starvation after which transactions must be rolled back
   
