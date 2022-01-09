@@ -1,0 +1,35 @@
+In order to be view serializable :
+
+1. Initial read of all data items from same transaction
+2. Final write of all data items in same transaction
+3. Update read : S1 -> WX Tm RX Tn
+then             S2 -> WX Tm RX Tn
+
+Example :
+
+  S1          S2
+ T1 T2      T1  T2
+ Ra         Ra        
+ Wa         Wa  
+    Ra      Rb
+    Wa      Wb
+ Rb              Ra
+ Wb              Wa
+    Rb           Rb
+    Wb           Wb
+    
+    
+ Initial read :
+ a : S1.T1 == S2.T1
+ b : S1.T1 == S2.T1
+ 
+ Final write :
+ a : S1.T2 == S2.T2
+ b : S1.T2 == S2.T2
+ 
+ Update Read :
+ a : T2 reads from T1 after updation/write A
+ b : T2 reads from T1 after updation/write B
+ Same order..
+ 
+ Thus, view serializable
