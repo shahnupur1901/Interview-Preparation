@@ -1,3 +1,4 @@
+Start phase : Obtain permission for locks
 Growing phase : acquire locks, not release them
 shrinking phase : release locks not acquire
 lock point : where final lock is acquired/first lock unlocked. The lock point order is serializabilty order.
@@ -6,6 +7,6 @@ Can generate irrecoverable / cascading rollbacks (dirty reads may be present wit
 No assurance from deadlock 
 conflict serializability present
 
-1. Strict 2 phase locking : Hold all exclusive locks till commit/abort , no cascading rollbacks
+1. Strict 2 phase locking : Hold all exclusive locks till commit/abort (NOT SHRINKING PHASE BUT TILL COMMIT/ABORT), no cascading rollbacks
 2. Rigorous 2 phase locking : Hold all locks till commit/abort
 
