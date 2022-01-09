@@ -1,0 +1,8 @@
+2 Conflicting instructions must obey :
+1. Operations should be in different transactions
+2. Operations must be on the same data item
+3. At least 1 operation is a write.
+
+If a schedule is conflict serializable, it is equivalent to a serial schedule and can be executed concurrently.
+
+Non conflicting operations can be swapped
