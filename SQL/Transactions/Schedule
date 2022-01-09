@@ -1,6 +1,6 @@
 Concurrency control schemes : Function concurrent processes without destroying database integrity
 
-Schedules : sequence of instructions to chronologically order instructions of concurrent transactions
+Schedules : sequence of instructions specifying the chronological order of instructions of concurrent transactions
 last operation of each transaction : commit/abort
 
 Serial and Parallel Schedules 
