@@ -36,3 +36,4 @@ db.cities.aggregate({$match : {"loc.1" : {$lt:100, $gt:-100}}})
 
 Index
 db.cities.createIndex({"state":1})
+db.cities.getIndexes()
