@@ -9,6 +9,10 @@ db.cities.aggregate([
 ... {$limit : 10},
 ... {$project : {"city":1, "state":1}}])
 
+Top 3 cities in each state with highest pop
+db.cities.aggregate([{$sort : {state : 1, pop : -1}}, {$group : {_id : "$state", states : {$push : "$pop"}}}, 
+{$project :{_id : 1, states : {$slice : ["$states" ,3 ]}}}])
+
 db.cities.aggregate([ {$match : {"loc.1" : {$lt : 90, $gt:10}}}])
 
 db.cities.createIndex({"state" : 1})
