@@ -42,3 +42,5 @@ likes is a key with array as value : ["eggs", "yarn","yoyo"] example
 check if eggs in is an array :
 array name : {$in : [what it shd contain]}
 > db.Items.find({"type" : "stationary", "likes" : {$in : ["eggs"]}})
+
+db.Items.find().count()
