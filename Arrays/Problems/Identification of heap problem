@@ -1,0 +1,10 @@
+Represent like stack
+Identification :
+Keyword 1 : k 
+Keyword 2 : smallest/largest
+
+k + smallest -> max heap
+k + largest -> min heap
+
+If heap is of size k, sorting complexity becomes nlogk
+
