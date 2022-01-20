@@ -1,0 +1,16 @@
+class Solution{
+    public static int kthSmallest(int[] arr, int l, int r, int k) 
+    { 
+        //Your code here
+        PriorityQueue<Integer> maxheap = new PriorityQueue(Collections.reverseOrder());
+        for(int i=l;i<=r;i++){
+            maxheap.add(arr[i]);
+            if(maxheap.size()>k)
+            maxheap.poll();
+        }
+        return maxheap.poll();
+        
+        
+        
+    } 
+}
