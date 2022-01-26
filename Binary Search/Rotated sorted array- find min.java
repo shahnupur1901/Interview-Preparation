@@ -8,7 +8,7 @@ ALSO : To find the number of times rotated = index of min element
 -arr[mid] is smallest if it is less than both its neighbours
 -Calculate prev and next while taking care of extreme conditions
 -compare arr[mid] with the 0th element. If arr[0]<=arr[mid] ---> that is the latter sorted array, which is unwanted. so, low = midpt + 1;
--compare arr[mid] with the 0th element. If arr[n-1]>arr[mid] ---> that is the latter sorted array, which is unwanted. so, high = midpt - 1;
+-compare arr[mid] with the (n-1)th element. If arr[n-1]>arr[mid] ---> that is the latter sorted array, which is unwanted. so, high = midpt - 1;
 
 O(log n)
 0 1 2 3 4 5 6
