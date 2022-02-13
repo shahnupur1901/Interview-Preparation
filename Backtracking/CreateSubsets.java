@@ -29,3 +29,34 @@ class Solution{
 	    return;
 	}
 }
+/*
+0 "" 
+0 "" 01 1
+0 "" 01 1 02 012 12 2
+*/
+static void subsetListIterative(int[] arr){
+	    ArrayList<ArrayList<Integer>> subsetCollection  = new ArrayList();
+	    int len = 0;
+	    for(int i = 0;i<arr.length;i++){
+		    //add an empty and one other character
+	        if(subsetCollection.size()==0){
+	            ArrayList<Integer> a = new ArrayList();
+	            ArrayList<Integer> b = new ArrayList();
+	            b.add(arr[0]);
+	            subsetCollection.add(a);
+	            subsetCollection.add(b); 
+	        }
+	        else{
+			//new element by adding this to all other elements
+	            len = subsetCollection.size();
+	            for(int j=0;j<len;j++){
+	                System.out.println(subsetCollection.size());
+	            ArrayList<Integer> x = new ArrayList(subsetCollection.get(j));
+	            
+	            x.add(arr[i]);
+	            subsetCollection.add(x); 
+	            }
+	        }
+	    }
+	    System.out.println(subsetCollection);
+	}
