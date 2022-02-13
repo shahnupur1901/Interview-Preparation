@@ -6,7 +6,30 @@ public class Main
 		int arr[] = {1,4,2,7,8};
 	    printt1(5);
 	}
+		static String remove(String str, char c, int idx){
+	    if(idx>str.length()-1) return str;
+	    if(str.charAt(idx) != c) return remove(str, c, idx+1);
+	    else{
+	        str = str.substring(0, idx) + str.substring(idx+1, str.length());
+	        return remove(str, c, idx);
+	    }
+	}
 	
+	static String removeSequence(String str, String seq, int index){
+	    
+	    if(str.length() < seq.length() || index >= str.length()) return str;
+	    //System.out.println(str);
+	    //System.out.println(str.substring(index, index + seq.length()));
+	    if(str.substring(index, index + seq.length()).equals(seq)) {
+	        System.out.println(str);
+	        str = str.substring(0,index) + str.substring(index + seq.length(), str.length()) ;
+	        System.out.println(str);
+	        return removeSequence(str,seq,index);
+	    }
+	    else{
+	        return removeSequence(str,seq,index+1);
+	    }
+	}
 	static void printt1(int n){
 	    if(n==0) return;
 	    else{
