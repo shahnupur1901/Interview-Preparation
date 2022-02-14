@@ -13,20 +13,23 @@ class Solution
          return rKnapsack(W,wt,val,n,t);
          
     } 
-       static int rKnapsack(int w, int wt[], int val[], int n, int[][] t){
-        if(n<=0 || w<=0){
-          t[n][w] = 0;
-        }
-        if(t[n][w] != -1){
-            return t[n][w];
-        }
-        if(wt[n-1] > w){
-            
-            t[n][w] = rKnapsack(w,wt,val,n-1,t);
-        }
-        else{
-            t[n][w] =  Integer.max(rKnapsack(w,wt,val,n-1,t), val[n-1] + rKnapsack(w - wt[n-1],wt,val,n-1,t));
-        }
-        return t[n][w];
+         static int recursiveKnapsack(int w, int wt[], int val[], int n, int[][] t){
+        //All items explored and the knapsack has no remaining capacity, return profit at that point as 0;
+       if(n<=0 || w<=0){
+           t[n][w] = 0;
+           return 0;
+       }
+       if(t[n][w]!=-1) return t[n][w];
+       if(wt[n-1] > w){
+           int wtGreater = recursiveKnapsack(w, wt, val, n-1, t);
+           t[n][w] = wtGreater;
+           return wtGreater;
+       }
+       else{
+           int wtIfIncluded = val[n-1] + recursiveKnapsack(w-wt[n-1], wt, val, n-1, t);
+           int wtNotIncluded = recursiveKnapsack(w, wt, val, n-1, t);
+           t[n][w] = Integer.max(wtIfIncluded, wtNotIncluded);
+           return t[n][w];
+       }
     }
 }
