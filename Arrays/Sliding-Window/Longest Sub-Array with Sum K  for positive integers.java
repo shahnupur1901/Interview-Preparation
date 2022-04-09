@@ -15,6 +15,9 @@
                     sum = sum - arr[i];
                     i++;
                 }
+                if(sum == k) {
+                    maxsize = Integer.max(j-i+1,maxsize);
+                }
                 j++;
             }
         }
